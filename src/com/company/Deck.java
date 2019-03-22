@@ -1,6 +1,7 @@
 package com.company;
-
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The Deck class represents a shuffled deck of cards.
@@ -12,8 +13,7 @@ public class Deck {
     /**
      * cards contains all the cards in the deck.
      */
-    private List<Card> cards = new ArrayList<>();
-
+    private List<Card> cards;
 
     /**
      * size is the number of not-yet-dealt cards.
@@ -32,14 +32,14 @@ public class Deck {
      * @param values is an array containing all of the card point values.
      */
     public Deck(String[] ranks, String[] suits, int[] values) {
-
-        for (int i = 0; i < suits.length; i++) {
-            for(int j = 0; j < ranks.length; j++) {
-                Card temp = new Card(ranks[j], suits[i], values[j]);
-                cards.add(temp);
+        cards = new ArrayList<Card>();
+        for (int j = 0; j < ranks.length; j++) {
+            for (String suitString : suits) {
+                cards.add(new Card(ranks[j], suitString, values[j]));
             }
         }
         size = cards.size();
+        shuffle();
     }
 
 
@@ -48,7 +48,7 @@ public class Deck {
      * @return true if this deck is empty, false otherwise.
      */
     public boolean isEmpty() {
-        return cards.size() == 0;
+        return size == 0;
     }
 
     /**
@@ -56,8 +56,7 @@ public class Deck {
      * @return the number of undealt cards in this deck.
      */
     public int size() {
-
-        return cards.size();
+        return size;
     }
 
     /**
@@ -66,6 +65,15 @@ public class Deck {
      */
     public void shuffle() {
         /* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+        Random r = new Random();
+        int rand = 0;
+        Card temp;
+        for (int i = cards.size()-1; i > 1; i--) {
+            rand = r.nextInt(i);
+            temp = cards.get(i);
+            cards.set(i, cards.get(rand));
+            cards.set(rand, temp);
+        }
     }
 
     /**
@@ -74,10 +82,12 @@ public class Deck {
      *         previously dealt.
      */
     public Card deal() {
-        Card temp = cards.get(cards.size());
-        return temp;
-
-
+        if (isEmpty()) {
+            return null;
+        }
+        size--;
+        Card c = cards.get(size);
+        return c;
     }
 
     /**
