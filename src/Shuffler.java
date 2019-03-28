@@ -1,5 +1,3 @@
-package com.company;
-
 import java.util.Random;
 
 /**
@@ -22,7 +20,8 @@ public class Shuffler {
     public static void main(String[] args) {
         System.out.println("Results of " + SHUFFLE_COUNT +
                 " consecutive perfect shuffles:");
-        int[] values1 = {0, 1, 2, 3};
+        int[] values1 = {1, 2, 3, 99};
+
         for (int j = 1; j <= SHUFFLE_COUNT; j++) {
             perfectShuffle(values1);
             System.out.print("  " + j + ":");
@@ -92,7 +91,7 @@ public class Shuffler {
         Random r = new Random();
         int rand = 0;
         int temp = 0;
-        for (int i = values.length-1; i > 1; i--) {
+        for (int i = values.length-1; i > 0; i--) {
             rand = r.nextInt(i);
             temp = values[i];
             values[i] = values[rand];

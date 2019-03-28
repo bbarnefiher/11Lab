@@ -1,4 +1,3 @@
-package com.company;
 /**
  * This is a class that tests the Deck class.
  */
@@ -11,7 +10,7 @@ public class DeckTester {
     public static void main(String[] args) {
         String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"};
         String[] suits = {"clubs", "spades", "diamonds", "hearts"};
-        int[] pointValues = {2, 3, 4, 5, 6,7,8,9,10,11};
+        int[] pointValues = {2, 3, 4, 5, 6,7,8,9,10,10,10,10,11};
         Deck d = new Deck(ranks, suits, pointValues);
 
         System.out.println("**** Original Deck Methods ****");
@@ -53,5 +52,8 @@ public class DeckTester {
         System.out.println();
 
         /* *** TO BE COMPLETED IN ACTIVITY 4 *** */
+        d.shuffle();
+        System.out.println("After Shuffle:");
+        System.out.println(d.toString());
     }
 }
